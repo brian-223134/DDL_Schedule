@@ -2,7 +2,7 @@
 
 Blue/Green 및 Canary 배포 환경에서 안전하게 DDL migration을 실행하기 위한 전략 문서입니다.
 
-이 저장소의 핵심 문서는 [`ddl-migration-timing-strategy.md`](./ddl-migration-timing-strategy.md)입니다.
+이 저장소의 핵심 문서는 [`ddl-migration-timing-strategy.md`](./docs/ddl-migration-timing-strategy.md)입니다.
 
 ## 목적
 
@@ -86,13 +86,16 @@ YYYY-MM-DD_description.post.rollback.sql
 
 ## 문서 구성
 
-- [`ddl-migration-timing-strategy.md`](./ddl-migration-timing-strategy.md)
+- [`ddl-migration-timing-strategy.md`](./docs/ddl-migration-timing-strategy.md)
   - DDL 유형별 실행 시점 분류
   - 현재 migration 파일 위험도 분석
   - 2-phase migration 패턴
   - ENUM, FK, NOT NULL, DROP, RENAME 처리 패턴
   - 배포 파이프라인 실행 순서
   - 운영 체크리스트
+- [`migration_phase_splitter.USAGE.md`](./docs/migration_phase_splitter.USAGE.md)
+  - Migration phase splitter 사용 방법
+  - Pre/Post migration 분리 실행 예시
 
 ## 사용 방법
 
