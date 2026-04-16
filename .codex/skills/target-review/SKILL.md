@@ -21,6 +21,7 @@ description: Review specific files explicitly mentioned in the current chat. Use
 - Avoid broad style feedback unless it creates a maintainability risk that can realistically cause defects.
 - If there are no findings, state that explicitly and include residual risks or areas not reviewed.
 - Add open questions or assumptions only after findings.
+- Make sure ouput should be written in korean.
 
 ## Codex Desktop Inline Findings
 
