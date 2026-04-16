@@ -42,6 +42,7 @@ def split_sql_statements(sql_text: str) -> list[str]:
     statements: list[str] = []
     buf: list[str] = []
 
+    # 문자열, backtick identifier, 주석 내부의 세미콜론은 statement 경계가 아니다.
     in_single = False
     in_double = False
     in_backtick = False
@@ -162,6 +163,7 @@ def strip_comments(sql: str) -> str:
     """Remove comments for classification while preserving literals."""
     out: list[str] = []
 
+    # 분류 정확도를 위해 주석은 제거하되, 문자열 리터럴 안의 내용은 그대로 보존한다.
     in_single = False
     in_double = False
     in_backtick = False
@@ -276,6 +278,7 @@ def classify_statement(sql: str) -> tuple[str, str]:
     if not text:
         return "manual", "Only comments or empty SQL"
 
+    # 세션/트랜잭션 제어문은 migration 전처리 성격이 강해서 기본적으로 pre에 둔다.
     # Session / transaction controls (kept as pre by default)
     if text.startswith(("SET ", "USE ", "START TRANSACTION", "COMMIT", "ROLLBACK")):
         return "pre", "Session or transaction control statement"
@@ -321,6 +324,7 @@ def classify_alter_table(text: str) -> tuple[str, str]:
     reasons: list[str] = []
     manual_reasons: list[str] = []
 
+    # 하나의 ALTER TABLE 안에 여러 성격의 작업이 섞일 수 있으므로 후보 phase를 누적한다.
     def mark(phase: str, reason: str, cond: bool) -> None:
         if cond:
             phases.add(phase)
@@ -367,6 +371,7 @@ def classify_alter_table(text: str) -> tuple[str, str]:
     if has_add_column:
         has_not_null = bool(re.search(r"\bADD\s+COLUMN\b[^;]*\bNOT\s+NULL\b", text))
         has_default = bool(re.search(r"\bADD\s+COLUMN\b[^;]*\bDEFAULT\b", text))
+        # NOT NULL 컬럼이라도 DEFAULT가 있으면 old insert path가 즉시 깨질 가능성이 낮다.
         if has_not_null and not has_default:
             mark(
                 "post",
@@ -417,6 +422,7 @@ def classify_alter_table(text: str) -> tuple[str, str]:
         return "manual", "Unknown ALTER TABLE pattern; requires review"
 
     if len(phases) > 1:
+        # pre/post가 한 statement에 섞이면 실행 시점을 자동으로 정할 수 없으므로 manual로 보낸다.
         return (
             "manual",
             "ALTER TABLE includes mixed phase actions; split into separate statements",
@@ -494,6 +500,7 @@ def infer_enum_phase_from_pair(forward_units: list[Unit], rollback_units: list[U
     forward_map: dict[tuple[str, str], Unit] = {}
     rollback_map: dict[tuple[str, str], Unit] = {}
 
+    # ENUM 변경은 forward만 보면 확장/축소를 알기 어려워 rollback 쌍과 비교한다.
     for unit in forward_units:
         sig = extract_alter_enum_signature(unit.sql)
         if not sig:
