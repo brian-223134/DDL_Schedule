@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Plan"
+  short_description: "Create an implementation plan from the user's proposal."
+  default_prompt: "Use make_plan to create a plan from the user's proposal."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Target Review"
+  short_description: "Review files explicitly mentioned in the chat."
+  default_prompt: "Use target_review to review the files mentioned in the chat."

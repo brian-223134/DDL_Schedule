@@ -1,0 +1,6 @@
+# Repo-local Codex configuration.
+# Hooks are intentionally not enabled by default because codex_hooks is experimental.
+# If this repo later adds active hooks, enable them with:
+#
+# [features]
+# codex_hooks = true
