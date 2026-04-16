@@ -1,1 +1,124 @@
 split*/
+
+# macOS
+.DS_Store
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution and packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Test and coverage output
+.coverage
+.coverage.*
+.cache/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+.testmondata
+
+# Type checking and static analysis
+.mypy_cache/
+.pyre/
+.pytype/
+dmypy.json
+dmypy.json.*
+
+# Virtual environments
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# Poetry
+poetry.toml
+
+# PDM
+.pdm.toml
+.pdm-python
+.pdm-build/
+
+# uv
+.uv-cache/
+
+# Pipenv
+# Keep Pipfile.lock tracked for applications; uncomment if this repo is a library.
+# Pipfile.lock
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask
+instance/
+.webassets-cache
+
+# Sphinx documentation
+docs/_build/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
