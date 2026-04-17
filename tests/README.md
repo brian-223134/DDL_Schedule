@@ -1,6 +1,6 @@
 # Splitter 테스트 fixture
 
-이 디렉터리는 `migration_phase_splitter.py`의 회귀 테스트와 SQL fixture를 보관한다.
+이 디렉터리는 `production/migration_phase_splitter.py`와 `develop/migration_phase_splitter.py`의 회귀 테스트와 SQL fixture를 보관한다.
 
 ## 단위 테스트 실행
 

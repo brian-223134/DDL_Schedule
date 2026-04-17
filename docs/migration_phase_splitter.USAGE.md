@@ -1,4 +1,4 @@
-# migration_phase_splitter.py
+# production/migration_phase_splitter.py
 
 Split a MySQL migration into canary-safe phases and statement-level units.
 
@@ -8,7 +8,7 @@ Split a MySQL migration into canary-safe phases and statement-level units.
 
 ## Run
 ```bash
-python3 migration_phase_splitter.py \
+python3 production/migration_phase_splitter.py \
   --forward /path/to/2026-04-16_example.sql \
   --rollback /path/to/2026-04-16_example.rollback.sql \
   --out-dir /path/to/split-output
@@ -45,5 +45,5 @@ Manifest:
 ## Strict mode
 Fail CI when manual-review statements exist:
 ```bash
-python3 migration_phase_splitter.py --forward /path/to/file.sql --strict
+python3 production/migration_phase_splitter.py --forward /path/to/file.sql --strict
 ```

@@ -7,10 +7,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
-    # 테스트를 어느 위치에서 실행해도 repo root의 migration_phase_splitter.py를 import한다.
+    # 테스트를 어느 위치에서 실행해도 repo root의 production package를 import한다.
     sys.path.insert(0, str(ROOT))
 
-from migration_phase_splitter import (  # noqa: E402
+from production.migration_phase_splitter import (  # noqa: E402
     Unit,
     classify_statement,
     infer_enum_phase_from_pair,
@@ -20,7 +20,7 @@ from migration_phase_splitter import (  # noqa: E402
 
 
 FIXTURES = ROOT / "tests" / "fixtures"
-SCRIPT = ROOT / "migration_phase_splitter.py"
+SCRIPT = ROOT / "production" / "migration_phase_splitter.py"
 
 
 class SplitSqlStatementsTest(unittest.TestCase):

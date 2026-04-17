@@ -177,7 +177,7 @@ SPLIT_OUT_DIR="$TMP_DIR/split-output"
 BASE_NAME="$(basename "$FORWARD_SQL" .sql)"
 
 echo "[ok] generating split output"
-python3 "$ROOT_DIR/migration_phase_splitter.py" \
+python3 "$ROOT_DIR/production/migration_phase_splitter.py" \
   --forward "$FORWARD_SQL" \
   --out-dir "$SPLIT_OUT_DIR"
 

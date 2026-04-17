@@ -98,6 +98,10 @@ YYYY-MM-DD_description.post.rollback.sql
 - [`migration_phase_splitter.USAGE.md`](./docs/migration_phase_splitter.USAGE.md)
   - Migration phase splitter 사용 방법
   - Pre/Post migration 분리 실행 예시
+- [`develop_migration_phase_splitter.USAGE.md`](./docs/develop_migration_phase_splitter.USAGE.md)
+  - Develop 환경용 단순 Pre/Post splitter 사용 방법
+- [`develop_migration_phase_splitter.DETAILS.md`](./docs/develop_migration_phase_splitter.DETAILS.md)
+  - Develop splitter 코드 구조와 분류 로직 설명
 
 ## 사용 방법
 
@@ -127,7 +131,7 @@ Blue/Green, Canary 배포에서는 스키마 호환성, 데이터 호환성, Old
 
 | 우선순위 | 개선 항목 | 내용 |
 |---|---|---|
-| P0 | 테스트 fixture 추가 | `migration_phase_splitter.py`의 분류 규칙을 검증하는 SQL fixture와 단위 테스트를 추가한다. `ADD COLUMN`, `DROP COLUMN`, `ENUM`, `FK`, `CHECK`, `UNIQUE`, `RENAME`, mixed ALTER 케이스를 고정 테스트로 만든다. |
+| P0 | 테스트 fixture 추가 | `production/migration_phase_splitter.py`의 분류 규칙을 검증하는 SQL fixture와 단위 테스트를 추가한다. `ADD COLUMN`, `DROP COLUMN`, `ENUM`, `FK`, `CHECK`, `UNIQUE`, `RENAME`, mixed ALTER 케이스를 고정 테스트로 만든다. |
 | P0 | README/문서 링크 검증 | GitHub에서 깨지는 상대 경로를 막기 위해 Markdown 링크 검증 스크립트나 CI job을 추가한다. |
 | P1 | Risk score 리포트 | 각 statement에 `safe`, `warning`, `danger`, `manual` 같은 위험도를 부여하고 manifest에 기록한다. 리뷰어가 어떤 migration을 먼저 봐야 하는지 빠르게 판단할 수 있다. |
 | P1 | Validation SQL 자동 생성 | `ADD FK`, `ADD NOT NULL`, `ADD UNIQUE`, ENUM 축소 전에 실행할 검증 SQL을 자동 생성한다. 예: orphan row 확인, NULL 확인, 중복 key 확인, deprecated enum value 확인. |
@@ -140,7 +144,7 @@ Blue/Green, Canary 배포에서는 스키마 호환성, 데이터 호환성, Old
 ### 추천 개발 로드맵
 
 1. `tests/fixtures` 디렉터리를 만들고 대표 SQL migration 샘플을 쌓는다.
-2. `migration_phase_splitter.py`에 대한 단위 테스트를 추가한다.
+2. `production/migration_phase_splitter.py`에 대한 단위 테스트를 추가한다.
 3. `manifest.json`에 phase뿐 아니라 risk level, reason, recommended validation을 추가한다.
 4. `ADD FK`, `ADD NOT NULL`, `ADD UNIQUE`, ENUM 축소에 대한 validation SQL generator를 만든다.
 5. MySQL DDL 옵션(`ALGORITHM`, `LOCK`)을 파싱하고 위험도를 표시한다.
